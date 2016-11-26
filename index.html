@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>C9 homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet/less" href="homepage.less" type="text/css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
+</head>
+
+    <body style="margin:0;">
+        
+        <div class="theme-landingpage wrap">
+                <div id="videoOverlay" style="display: none; background-color: black; position:absolute; z-index:1000; height:100%; width:100%; bottom:0; vertical-align:middle; bottom:0;">
+            <img onclick="videoClose()" class="close_button" height="100px;" src="x-btn.png"/>
+            <div id="player" style="display: none;"></div>
+        </div>
+        
+        <script>
+            var tag = document.createElement('script');
+        
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            
+            // 3. This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+            var player;
+        
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    height: '100%',
+                    width: '100%',
+                    videoId: 'UX0mqLVlauk',
+                    playerVars: { 'showinfo': 0 },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+        
+            function playVideo() {
+                player.playVideo();
+            }
+        
+            function onPlayerReady(event) {
+                console.log("Video loaded");
+            }
+        
+            function videoClose() {
+              if (player) {
+                player.stopVideo();
+                document.getElementById("videoOverlay").style.display = "none";
+                document.getElementById("player").style.display = "none";
+              }
+            }
+        
+            function videoPopup() {
+                player.playVideo();
+                document.getElementById("videoOverlay").style.display = "block";
+                setTimeout(function(){
+                    document.getElementById("player").style.display = "block";
+                }, 400);
+                // var video = document.getElementById("video");
+                // video.src = "https://www.youtube.com/v/UX0mqLVlauk?autoplay=1&controls=0&showinfo=0&loop=1&iv_load_policy=3&enablejsapi=1";
+            }
+        </script>
+            <header class="bg-white" id="signup-header">
+                <a href="/" class="nounderline float-left flex-center-left logo">
+                    <img height=34 src="cloud9-logo.svg" />
+                </a>
+            
+                <div class="float-right">
+                    <span>
+                        <a href="#" class="header_right_items">Product</a>
+                        <a href="#" class="header_right_items">Pricing</a>
+                        <a href="#" class="header_right_items">Explore</a>
+                        <a href="#" class="header_right_items">Resources</a>
+                        <button class="login_button"><a href="#" class="login_link">Log in</a></button>
+                    </span>
+                </div>
+            </header>
+            
+            
+            <article class="bg-bright-blue flex-center-center">
+                <section class="text-center text-color-inverse center-block" style="margin-bottom:0; margin-top: 60px;">
+                    <h1 class="center-block">A fundamentally new way to build apps</h1>
+                    <h2 class="text-color-inverse center-block">Cloud9 is on a mission to make <b>building quality apps easier, more agile,</b> and <b>more creative</b> by automating the mundane and using assisted machine intelligence.</h2>
+                    <form class="flex-center-justify center-block" style="margin-top:36px;">
+                        <input autofocus class="inline nomargins email_input" size=15 type="text" placeholder="E-mail Address" />
+                        <a href="#" class="button solid fat success nounderline">Start Coding</a>
+                    </form>
+                    <p class="forever_free">Cloud9 has a new forever free plan. No credit card required.</p>
+                    <div class="center-block image_overlay" onclick="videoPopup()">
+                        <button type="button" aria-label="Left Align" class="play_button">
+                            <span style="color:white; font-size:75px;">&#9658</span>
+                        </button>
+                    </div>
+                </section>
+            </article>
+        
+            <footer>
+                <section>
+                    <div class="row gray">
+                        <div class="col-xs-3">
+                            <ul>
+                                <li><b>Product</b></li>
+                                <li>Education</li>
+                                <ul>
+                                    <li style="margin-left: -1em">High Schools</li>
+                                    <li style="margin-left: -1em">University</li>
+                                </ul>
+                                <li>Professionals</li>
+                                <ul>
+                                    <li style="margin-left: -1em">Individuals</li>
+                                    <li style="margin-left: -1em">Teams</li>
+                                </ul>
+                                <li>Enterprise</li>
+                                <li>Co-branded IDEs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-xs-3">
+                            <ul>
+                                <li><b>Explore</b></li>
+                                <li>IDEs by Language</li>
+                                <ul>
+                                    <li style="margin-left: -1em">Javascript, PHP, Python</li>
+                                    <li style="margin-left: -1em">Ruby, Java, C++</li>
+                                    <li style="margin-left: -1em">more...</li>
+                                </ul>
+                                <li>IDEs by Platform</li>
+                                <ul>
+                                    <li style="margin-left: -1em">Salesforce</li>
+                                    <li style="margin-left: -1em">AWS</li>
+                                    <li style="margin-left: -1em">Google</li>
+                                    <li style="margin-left: -1em">ARM</li>
+                                    <li style="margin-left: -1em">more...</li>
+                                </ul>
+                                <li>Plugins</li>
+                                <li>Templates</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-xs-3">
+                            <ul>
+                                <li><b>Cloud9</b></li>
+                                <li>Pricing</li>
+                                <li>Jobs</li>
+                                <li>Customers</li>
+                                <li>Blog</li>
+                                <li>Cloud9 Shop</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-xs-3">
+                            <ul>
+                                <li><b>Resources</b></li>
+                                <li>Documentation</li>
+                                <li>Support</li>
+                                <li>SDK</li>
+                                <li>Webinars</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-xs-3">
+                            <ul>
+                                <li><b>Legal</b></li>
+                                <li>Privacy</li>
+                                <li>Security</li>
+                                <li>Terms of Service</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </footer>
+        </div>
+    </body>
+</html>
